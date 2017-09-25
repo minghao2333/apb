@@ -1,0 +1,109 @@
+// Copyright (C) 1991-2012 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench template that is freely editable to  
+// suit user's needs .Comments are provided in each section to help the user    
+// fill out necessary details.                                                  
+// *****************************************************************************
+// Generated on "09/25/2017 20:08:52"
+                                                                                
+// Verilog Test Bench template for design : apbtop
+// 
+// Simulation tool : ModelSim (Verilog)
+// 
+
+`timescale 1 ns/ 1 ps
+module apbtop_vlg_tst();
+// constants                                           
+// general purpose registers
+//reg eachvec;
+// test vector input registers
+reg [31:0] haddr_i;
+reg [3:0] hsel_i;
+reg [31:0] hwdata_i;
+reg hwrite_i;
+reg pclk;
+reg [31:0] prdata_i;
+reg presetn;
+// wires                                               
+wire uart_tx_o1;
+
+// assign statements (if any)                          
+apbtop i1 (
+// port map - connection between master ports and signals/registers   
+	.haddr_i(haddr_i),
+	.hsel_i(hsel_i),
+	.hwdata_i(hwdata_i),
+	.hwrite_i(hwrite_i),
+	.pclk(pclk),
+	.prdata_i(prdata_i),
+	.presetn(presetn),
+	.uart_tx_o1(uart_tx_o1)
+);
+initial                                                
+begin                                                  
+// code that executes only once                        
+// insert code here --> begin                          
+     pclk = 0;
+   presetn = 0;
+	hsel_i = 0;
+	haddr_i=0;
+    hwdata_i=0;
+    hwrite_i=0;
+    prdata_i=0;
+   #100;
+	presetn = 1;
+	#205
+	 hsel_i = 1;
+	 #10
+    haddr_i=32'h4;
+    hwdata_i=32'h0;
+    hwrite_i=1;
+    //prdata_i=32'h34333333; 
+    #10
+	 hsel_i = 0;
+	#205
+	 hsel_i = 1;
+	 #10
+    haddr_i=32'h8;
+    hwdata_i=32'h12345678;
+    hwrite_i=1;
+    prdata_i=32'h34333333; 
+    #10
+	 hsel_i = 0;
+   #205
+	 hsel_i = 1;
+	 #10
+    haddr_i=32'h8;
+    hwdata_i=32'h11112222;
+    hwrite_i=1;
+    prdata_i=32'h34333333; 
+    #10
+	 hsel_i = 0;	   	 
+// --> end                                             
+//$display("Running testbench");                       
+end                                                    
+always                                                 
+// optional sensitivity list                           
+// @(event1 or event2 or .... eventn)                  
+begin                                                  
+// code executes for every event on sensitivity list   
+// insert code here --> begin                          
+         #5 pclk = ~pclk;                                                
+//@eachvec;                                              
+// --> end                                             
+end                                                    
+endmodule
+
