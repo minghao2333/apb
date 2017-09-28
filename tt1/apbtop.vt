@@ -1,0 +1,164 @@
+// Copyright (C) 1991-2012 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench template that is freely editable to  
+// suit user's needs .Comments are provided in each section to help the user    
+// fill out necessary details.                                                  
+// *****************************************************************************
+// Generated on "09/28/2017 11:52:39"
+                                                                                
+// Verilog Test Bench template for design : apbtop
+// 
+// Simulation tool : ModelSim (Verilog)
+// 
+
+`timescale 1 ns/ 1 ps
+module apbtop_vlg_tst();
+// constants                                           
+// general purpose registers
+//reg eachvec;
+// test vector input registers
+reg busyn;
+reg [7:0] datarx;
+reg [5:0] paddr;
+reg pclk;
+reg penable;
+reg presetn;
+reg psel;
+reg [31:0] pwdata;
+reg pwrite;
+// wires                                               
+wire  datatx;
+wire interrupt;
+wire [31:0]  prdata;
+wire shoot;
+
+// assign statements (if any)                          
+apbtop i1 (
+// port map - connection between master ports and signals/registers   
+	.busyn(busyn),
+	.datarx(datarx),
+	.datatx(datatx),
+	.interrupt(interrupt),
+	.paddr(paddr),
+	.pclk(pclk),
+	.penable(penable),
+	.prdata(prdata),
+	.presetn(presetn),
+	.psel(psel),
+	.pwdata(pwdata),
+	.pwrite(pwrite),
+	.shoot(shoot)
+);
+initial                                                
+begin                                                  
+// code that executes only once                        
+// insert code here --> begin                          
+     pclk = 0;
+   presetn = 0;
+	psel = 0;
+	penable=0;
+	paddr=0;
+    pwdata=0;
+    pwrite=0;
+	 
+	 busyn=0;
+	 datarx=0;
+    //prdata=0;
+   #100;
+	presetn = 1;
+	#205
+	busyn=1;
+	 datarx=8'h32;
+	 psel = 1;
+    paddr=6'h4;
+    pwdata=32'h3;
+    pwrite=1;
+	 #10
+	 penable=1;
+	 busyn=0;
+	 #10
+	 penable=0;
+    //prdata_i=32'h34333333; 
+	
+	  busyn=1;
+	 datarx=8'h12;
+	 psel = 1;
+    paddr=6'h8;
+    pwdata=32'h12345678;
+    pwrite=1;
+	 #10
+	 penable=1;
+	 busyn=0; 
+	 #10
+	 penable=0;
+	 
+    
+	 busyn=1;
+	 datarx=8'h43;
+	 psel = 1;
+    paddr=6'h8;
+    pwdata=32'h22334455;
+    pwrite=1;
+	 #10
+	 penable=1;
+	 busyn=0;
+	 #10
+	 penable=0; 
+
+	 busyn=1;
+	 datarx=8'h13;
+    psel = 1;
+    paddr=6'h8;
+    pwdata=32'h12345678;
+    pwrite=1;
+	 #10
+	 penable=1;
+	 busyn=0;
+	 #10
+	 penable=0; 
+
+    psel = 1;
+    paddr=6'h8;
+    pwdata=32'h22334455;
+    pwrite=1;
+	 #10
+	 penable=1;
+	 #10
+	 penable=0; 
+
+    psel = 1;
+    paddr=6'h8;
+    //pwdata=32'h22334455;
+    pwrite=0; 
+	 #10
+	 penable=1;
+	 #10
+	 penable=0; 
+// --> end                                             
+//$display("Running testbench");                       
+end                                                    
+always                                                 
+// optional sensitivity list                           
+// @(event1 or event2 or .... eventn)                  
+begin                                                  
+// code executes for every event on sensitivity list   
+// insert code here --> begin                          
+  #5 pclk = ~pclk;                                                         
+//@eachvec;                                              
+// --> end                                             
+end                                                    
+endmodule
+
